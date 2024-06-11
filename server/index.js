@@ -21,6 +21,9 @@ app.get('/', async (req, res) => {
   });
 
 
+app.use('/auth', require('./routes/auth.route'));
+
+
 
 
 
