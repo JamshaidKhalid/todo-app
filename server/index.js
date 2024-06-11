@@ -22,6 +22,7 @@ app.get('/', async (req, res) => {
 
 
 app.use('/auth', require('./routes/auth.route'));
+app.use('/todos', require('./routes/todo.route'));
 
 
 
