@@ -6,12 +6,17 @@ const dotenv = require('dotenv');
 const supabase = require('./config/supabaseClient');
 dotenv.config();
 
-app.use(cors(
-    {
-        origin: 'https://todo-app-react-vite-ts.vercel.app/',
-        credentials: true
+const allowedOrigins = ['https://todo-app-react-vite-ts.vercel.app'];
+
+app.use(cors({
+  origin: function (origin, callback) {
+    if (!origin || allowedOrigins.indexOf(origin) !== -1) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
     }
-));
+  }
+}));
 app.use(bodyparser.json());
 app.use(bodyparser.urlencoded({extended: true}));
 
