@@ -34,8 +34,8 @@ const AuthForm: React.FC<AuthFormProps> = ({ formType }) => {
         toast.success('Signup successful');
         navigate('/signin');
       }
-    } catch (error: any) {
-      toast.error(error.message || 'An error occurred');
+    } catch (e) {
+      toast.error('An error occurred');
     } finally {
       setLoading(false);
     }

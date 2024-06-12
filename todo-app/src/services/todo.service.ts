@@ -5,7 +5,7 @@ const BASE_URL = `http://localhost:5000`
 
 
 
-export const getTodos = async (authToken: string): Promise<Todo[]> => {
+export const getTodos = async (authToken: string | null): Promise<Todo[]> => {
   try {
     const response = await axios.get(`${BASE_URL}/todos`, {
       headers: {
