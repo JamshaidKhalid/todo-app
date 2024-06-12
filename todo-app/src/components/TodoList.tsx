@@ -8,16 +8,14 @@ interface TodoListProps {
 }
 
 const TodoList: React.FC<TodoListProps> = ({ todos, deleteTodo, editTodo }) => {
-  const [editId, setEditId] = useState<number | null>(null); // State to track the edited todo ID
-  const [updatedTask, setUpdatedTask] = useState<string>(''); // State to track the updated task
+  const [editId, setEditId] = useState<number | null>(null); 
+  const [updatedTask, setUpdatedTask] = useState<string>(''); 
 
-  // Function to handle opening the edit box and updating the state with the todo ID being edited
   const handleEdit = (id: number, task: string) => {
     setEditId(id);
     setUpdatedTask(task);
   };
 
-  // Function to handle saving the updated task
   const handleSave = (id: number) => {
     editTodo(id, updatedTask);
     setEditId(null);

@@ -1,11 +1,11 @@
-// TodosPage.tsx
+
 
 import Navbar from '../components/Navbar';
 import TodoInput from '../components/TodoInput';
 import TodoList from '../components/TodoList';
 import { useState, useEffect } from 'react';
 import { Todo } from '../types/todo';
-import { addTodoAPI, getTodos, editTodo, deleteTodo } from '../services/todo.service'; // Import editTodo and deleteTodo functions
+import { addTodoAPI, getTodos, editTodo, deleteTodo } from '../services/todo.service'; 
 
 const TodosPage: React.FC = () => {
   const [todos, setTodos] = useState<Todo[]>([]);
@@ -61,8 +61,8 @@ const TodosPage: React.FC = () => {
       <TodoInput addTodo={addTodo} />
       <TodoList
         todos={todos}
-        editTodo={handleEditTodo} // Pass editTodo function
-        deleteTodo={handleDeleteTodo} // Pass deleteTodo function
+        editTodo={handleEditTodo} 
+        deleteTodo={handleDeleteTodo} 
       />
     </div>
   );
