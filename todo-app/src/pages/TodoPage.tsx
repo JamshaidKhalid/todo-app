@@ -22,7 +22,7 @@ const TodosPage: React.FC = () => {
     };
 
     fetchTodos();
-  }, []);
+  }, [todos]);
 
   const addTodo = async (text: string) => {
     try {
