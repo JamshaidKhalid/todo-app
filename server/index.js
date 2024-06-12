@@ -6,7 +6,12 @@ const dotenv = require('dotenv');
 const supabase = require('./config/supabaseClient');
 dotenv.config();
 
-app.use(cors());
+app.use(cors(
+    {
+        origin: 'https://todo-app-react-vite-ts.vercel.app/',
+        credentials: true
+    }
+));
 app.use(bodyparser.json());
 app.use(bodyparser.urlencoded({extended: true}));
 
