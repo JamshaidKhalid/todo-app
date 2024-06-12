@@ -1,7 +1,8 @@
 import axios from 'axios';
 // import { BASE_URL } from '../config/urls';
 
-const BASE_URL = `http://localhost:5000`
+// const BASE_URL = `http://localhost:5000`
+const BASE_URL = `todo-app-node-backend.vercel.app`
 export const login = async (email: string, password: string) => {
   try {
     console.log(BASE_URL)

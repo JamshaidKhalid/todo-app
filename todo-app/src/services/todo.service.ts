@@ -1,8 +1,8 @@
 import axios from 'axios';
 import { Todo } from '../types/todo';
 
-const BASE_URL = `http://localhost:5000`
-
+// const BASE_URL = `http://localhost:5000`
+const BASE_URL = `todo-app-node-backend.vercel.app`
 
 
 export const getTodos = async (authToken: string | null): Promise<Todo[]> => {
