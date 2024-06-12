@@ -1,10 +1,11 @@
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import toast, { Toaster } from 'react-hot-toast';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
+import { login, signup } from '../services/auth.service';
 
 interface AuthFormProps {
   formType: 'signin' | 'signup';
@@ -18,19 +19,23 @@ const AuthForm: React.FC<AuthFormProps> = ({ formType }) => {
     setShowPassword((prev) => !prev);
   };
 
+  const navigate = useNavigate();
+
   const handleSubmit = async (values: { email: string; password: string }) => {
     setLoading(true);
 
     try {
       if (formType === 'signin') {
-        await login(values.email, values.password); // Replace with your login function
+        await login(values.email, values.password); 
         toast.success('Login successful');
+        navigate('/dashboard');
       } else {
-        await signup(values.email, values.password); // Replace with your signup function
+        await signup(values.email, values.password); 
         toast.success('Signup successful');
+        navigate('/signin');
       }
     } catch (error: any) {
-      toast.error(error.message);
+      toast.error(error.message || 'An error occurred');
     } finally {
       setLoading(false);
     }

@@ -1,11 +1,12 @@
 const express = require('express');
 const bodyparser = require('body-parser');
+const cors = require('cors');
 const app = express();
 const dotenv = require('dotenv');
 const supabase = require('./config/supabaseClient');
 dotenv.config();
 
-
+app.use(cors());
 app.use(bodyparser.json());
 app.use(bodyparser.urlencoded({extended: true}));
 
