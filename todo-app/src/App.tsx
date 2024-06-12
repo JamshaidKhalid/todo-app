@@ -1,4 +1,4 @@
-import { Route, Routes, useNavigate } from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom';
 import AuthPage from './pages/AuthPage';
 import './App.css';
 import TodosPage from './pages/TodoPage';
@@ -6,7 +6,6 @@ import TodosPage from './pages/TodoPage';
 function App() {
 
   const isLoggedIn = localStorage.getItem('authToken') !== null && localStorage.getItem('email') !== null;
-  const navigate = useNavigate();
 
   return (
     <Routes>

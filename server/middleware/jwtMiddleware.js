@@ -2,7 +2,7 @@ const jwt = require('jsonwebtoken');
 
 const jwtMiddleware = (req, res, next) => {
   // Get token from request headers
-  const token = req.headers.authorization || req.headers.authorization.split(' ')[1];
+  const token = req.headers.authorization;
 
   // Check if token is provided
   if (!token) {
