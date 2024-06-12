@@ -10,16 +10,20 @@ app.use(cors());
 app.use(bodyparser.json());
 app.use(bodyparser.urlencoded({extended: true}));
 
-app.get('/', async (req, res) => {
-    try {
-      const { data, error } = await supabase.from('todos').select('*');
-      if (error) throw error;
-      res.json(data);
-    } catch (err) {
-      console.error('Error fetching data:', err);
-      res.status(500).send('Database connection failed');
-    }
-  });
+// app.get('/', async (req, res) => {
+//     try {
+//       const { data, error } = await supabase.from('todos').select('*');
+//       if (error) throw error;
+//       res.json(data);
+//     } catch (err) {
+//       console.error('Error fetching data:', err);
+//       res.status(500).send('Database connection failed');
+//     }
+//   });
+
+app.get('/', (req, res) => {
+    res.send('Hello World');
+});
 
 
 app.use('/auth', require('./routes/auth.route'));
