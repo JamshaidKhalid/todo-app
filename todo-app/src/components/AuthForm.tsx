@@ -28,7 +28,9 @@ const AuthForm: React.FC<AuthFormProps> = ({ formType }) => {
       if (formType === 'signin') {
         await login(values.email, values.password); 
         toast.success('Login successful');
-        navigate('/dashboard');
+        setTimeout(() => {
+          navigate('/dashboard');
+        }, 1000)
       } else {
         await signup(values.email, values.password); 
         toast.success('Signup successful');

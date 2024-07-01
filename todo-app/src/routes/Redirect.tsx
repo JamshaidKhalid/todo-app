@@ -1,5 +1,8 @@
 import { useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Routes, Route, useNavigate } from 'react-router-dom';
+import AuthPage from '../pages/AuthPage';
+import TodosPage from '../pages/TodoPage';
+
 
 const Redirect: React.FC = () => {
   const navigate = useNavigate();
@@ -14,7 +17,15 @@ const Redirect: React.FC = () => {
     }
   }, [navigate]);
 
-  return null;
+  return (
+    <>
+    <Routes>
+    <Route path="/dashboard" element={<TodosPage />} />
+          <Route path="/" element={<AuthPage formType='signin' />} />
+          <Route path="/signup" element={<AuthPage formType='signup' />} />
+    </Routes>
+    </>
+  );
 };
 
 export default Redirect;

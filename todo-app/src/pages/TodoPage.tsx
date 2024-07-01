@@ -16,13 +16,14 @@ const TodosPage: React.FC = () => {
       try {
         const fetchedTodos = await getTodos(authToken);
         setTodos(fetchedTodos);
+        console.log(todos)
       } catch (error) {
         console.error('Error fetching todos:', error);
       }
     };
 
     fetchTodos();
-  }, [todos]);
+  }, [authToken]);
 
   const addTodo = async (text: string) => {
     try {

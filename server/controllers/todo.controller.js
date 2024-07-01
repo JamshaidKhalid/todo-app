@@ -15,7 +15,7 @@ const createTodo = async (req, res) => {
 };
 
 const getAllTodos = async (req, res) => {
-    const userId = req.userId; // Get userId from request object
+    const userId = req.userId; 
   
     try {
       const todos = await TodoModel.getAllTodosForUser(userId);
