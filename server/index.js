@@ -6,7 +6,7 @@ const dotenv = require('dotenv');
 const supabase = require('./config/supabaseClient');
 dotenv.config();
 
-const allowedOrigins = [`https://todo-app-react-vite-ts.vercel.app`, `http://localhost:3000`];
+const allowedOrigins = [`https://todo-app-react-vite-ts.vercel.app`, `http://localhost:5173`];
 
 app.use(cors({
     origin: function(origin, callback) {
