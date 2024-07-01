@@ -1,5 +1,3 @@
-
-
 import Navbar from '../components/Navbar';
 import TodoInput from '../components/TodoInput';
 import TodoList from '../components/TodoList';
@@ -16,7 +14,6 @@ const TodosPage: React.FC = () => {
       try {
         const fetchedTodos = await getTodos(authToken);
         setTodos(fetchedTodos);
-        console.log(todos)
       } catch (error) {
         console.error('Error fetching todos:', error);
       }
@@ -28,7 +25,9 @@ const TodosPage: React.FC = () => {
   const addTodo = async (text: string) => {
     try {
       const newTodo = await addTodoAPI(text, authToken);
-      setTodos(prevTodos => [...prevTodos, newTodo]);
+      // Ensure the new todo has all the necessary fields
+      const newTodoWithDate = { ...newTodo, task: text, created_at: new Date().toISOString() };
+      setTodos(prevTodos => [...prevTodos, newTodoWithDate]);
     } catch (error) {
       console.error('Error adding todo:', error);
     }
@@ -37,8 +36,11 @@ const TodosPage: React.FC = () => {
   const handleEditTodo = async (id: number, updatedTask: string) => {
     try {
       await editTodo(id, updatedTask, authToken);
-      const updatedTodos = await getTodos(authToken);
-      setTodos(updatedTodos);
+      setTodos(prevTodos => 
+        prevTodos.map(todo => 
+          todo.id === id ? { ...todo, task: updatedTask } : todo
+        )
+      );
     } catch (error) {
       console.error('Error editing todo:', error);
     }
@@ -47,9 +49,7 @@ const TodosPage: React.FC = () => {
   const handleDeleteTodo = async (id: number) => {
     try {
       await deleteTodo(id, authToken);
-      // Fetch updated todos after delete
-      const updatedTodos = await getTodos(authToken);
-      setTodos(updatedTodos);
+      setTodos(prevTodos => prevTodos.filter(todo => todo.id !== id));
     } catch (error) {
       console.error('Error deleting todo:', error);
     }
